@@ -1,0 +1,224 @@
+﻿<UserControl x:Class="HighCareMainApp.Views.LoginControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HighCareMainApp.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="StyleDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.15*"/>
+            <RowDefinition/>
+            <RowDefinition Height="0.15*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.15*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0.15*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.30*"/>
+                <RowDefinition/>
+                <RowDefinition Height="0.30*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.05*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0.05*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="1" Grid.Column="1" >
+                <GroupBox x:Name="grpBoxLogin" Visibility="Visible" BorderBrush="{StaticResource ResourceKey=Black}" BorderThickness="1">
+                    <GroupBox.Header>
+                        <TextBlock Text="Login" Style="{StaticResource ResourceKey=TextBlockFont25}"/>
+                    </GroupBox.Header>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.50*"/>
+                            <RowDefinition Height="0.50*"/>
+                            <RowDefinition Height="0.50*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.15*"/>
+                            <ColumnDefinition Width="0.01*"/>
+                            <ColumnDefinition Width="0.50*"/>
+                            <ColumnDefinition Width="0.15*"/>
+                            <ColumnDefinition Width="0.01*"/>
+                            <ColumnDefinition Width="0.25*"/>
+                            <ColumnDefinition Width="0.05*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Username" Grid.Column="0" Grid.Row="0" Style="{StaticResource TextBlockFont20}"/>
+
+                        <TextBox x:Name="txtUserName" Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="0"  Style="{DynamicResource txtbxStyle}"/>
+
+                        <TextBlock Text="Password" Grid.Column="0" Grid.Row="1" Style="{StaticResource TextBlockFont20}"/>
+
+                        <CheckBox x:Name="chkShowHidePwd" Grid.Column="5" Width="50" Grid.Row="1" Panel.ZIndex="1" HorizontalAlignment="Right" Background="{x:Null}" VerticalAlignment="Bottom" Style="{DynamicResource ChkBxShowHidePwdStyle}" />
+
+                        <PasswordBox x:Name="pwdBox" Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="1">
+                            <PasswordBox.Style>
+                                <Style TargetType="PasswordBox" BasedOn="{StaticResource PwdBxStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=chkShowHidePwd, Path=IsChecked}" Value="False">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=chkShowHidePwd, Path=IsChecked}" Value="True">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </PasswordBox.Style>
+                        </PasswordBox>
+
+                        <TextBox x:Name="txtBoxShowPwd" Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="1">
+                            <TextBox.Style>
+                                <Style TargetType="TextBox" BasedOn="{StaticResource txtbxStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=chkShowHidePwd, Path=IsChecked}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=chkShowHidePwd, Path=IsChecked}" Value="False">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+
+                        <Grid Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.70*"/>
+                                <ColumnDefinition Width="0.01*"/>
+                                <ColumnDefinition Width="0.25*"/>
+                                <ColumnDefinition Width="0.01*"/>
+                                <ColumnDefinition Width="0.25*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="btnResetPwd" Grid.Column="2" Width="150" Height="40" VerticalAlignment="Center" Style="{StaticResource BtnStyleWithoutBorder}">
+                                <TextBlock Text="Reset Password" Style="{StaticResource TextBlockFont16}"/>
+                            </Button>
+                            <Button x:Name="btnLogin" Grid.Column="4" Width="150" Height="40" VerticalAlignment="Center" IsEnabled="False" Style="{StaticResource BtnStyleWithBorder}">
+                                <TextBlock Text="Login"  Style="{StaticResource TextBlockFont16}"/>
+                            </Button>
+                        </Grid>
+
+                    </Grid>
+                </GroupBox>
+                <GroupBox x:Name="grpBoxResetPassword" BorderBrush="{StaticResource ResourceKey=Black}" BorderThickness="1"  Visibility="Collapsed">
+                    <GroupBox.Header>
+                        <TextBlock Text="Reset Password" Style="{StaticResource ResourceKey=TextBlockFont25}"/>
+                    </GroupBox.Header>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.50*"/>
+                            <RowDefinition Height="0.50*"/>
+                            <RowDefinition Height="0.50*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.25*"/>
+                            <ColumnDefinition Width="0.01*"/>
+                            <ColumnDefinition Width="0.50*"/>
+                            <ColumnDefinition Width="0.15*"/>
+                            <ColumnDefinition Width="0.01*"/>
+                            <ColumnDefinition Width="0.25*"/>
+                            <ColumnDefinition Width="0.05*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="New password" Grid.Column="0" Grid.Row="0" Style="{StaticResource TextBlockFont20}" />
+
+                        <TextBlock Text="Confirm password" Style="{StaticResource TextBlockFont20}" Grid.Column="0" Grid.Row="1"/>
+
+
+                        <CheckBox x:Name="chkShowHideNewPwd" Grid.Row="0" Grid.Column="5" Panel.ZIndex="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Style="{StaticResource ChkBxShowHidePwdStyle}" Width="50" Height="50"/>
+
+                        <PasswordBox x:Name="pwdBoxNewPwd" Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="0">
+                            <PasswordBox.Style>
+                                <Style TargetType="PasswordBox" BasedOn="{StaticResource PwdBxStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=chkShowHideNewPwd, Path=IsChecked}" Value="False">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=chkShowHideNewPwd, Path=IsChecked}" Value="True">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </PasswordBox.Style>
+                        </PasswordBox>
+                        <TextBox x:Name="txtBoxShowPwdNewPwd" Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="0">
+                            <TextBox.Style>
+                                <Style TargetType="TextBox" BasedOn="{StaticResource txtbxStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=chkShowHideNewPwd, Path=IsChecked}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=chkShowHideNewPwd, Path=IsChecked}" Value="False">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+
+
+                        <CheckBox x:Name="chkShowHideConfirmPwd" Grid.Row="1" Grid.Column="5" Panel.ZIndex="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" Style="{StaticResource ChkBxShowHideConfirmPwdStyle}"/>
+                            <PasswordBox x:Name="pwdBoxConfirmPwd" Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="1">
+                            <PasswordBox.Style>
+                                <Style TargetType="PasswordBox" BasedOn="{StaticResource PwdBxStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=chkShowHideConfirmPwd, Path=IsChecked}" Value="False">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=chkShowHideConfirmPwd, Path=IsChecked}" Value="True">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </PasswordBox.Style>
+                        </PasswordBox>
+
+
+                        <TextBox x:Name="txtBoxShowPwdConfirmPwd" Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="1">
+                            <TextBox.Style>
+                                <Style TargetType="TextBox" BasedOn="{StaticResource txtbxStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=chkShowHideConfirmPwd, Path=IsChecked}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=chkShowHideConfirmPwd, Path=IsChecked}" Value="False">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+
+                        <Grid Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.70*"/>
+                                <ColumnDefinition Width="0.01*"/>
+                                <ColumnDefinition Width="0.25*"/>
+                                <ColumnDefinition Width="0.01*"/>
+                                <ColumnDefinition Width="0.25*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="btnResetPwdBox" Grid.Column="3" Grid.ColumnSpan="4"  Width="150" Height="40" VerticalAlignment="Center" IsEnabled="False" Style="{StaticResource BtnStyleWithBorder}">
+                                <TextBlock Text="Reset password"  Style="{StaticResource TextBlockFont16}"/>
+                            </Button>
+                        </Grid>
+                       
+
+
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

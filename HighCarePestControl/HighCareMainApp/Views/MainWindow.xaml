@@ -1,0 +1,52 @@
+﻿<Window x:Class="HighCareMainApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HighCareMainApp"
+        mc:Ignorable="d" ResizeMode="NoResize" WindowState="Maximized"
+        WindowStartupLocation="CenterOwner" WindowStyle="None" 
+        Height="500" Width="1000" 
+        xmlns:LoginView="clr-namespace:HighCareMainApp.Views"
+        Title="MainWindow" >
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="StyleDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <!--<RowDefinition Height="0.09*"/>
+            <RowDefinition Height="0.015*" MinHeight="15"/>
+            <RowDefinition Height="0.75*"/>-->
+                <RowDefinition Height="55"/>
+                <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Style="{StaticResource ApplicationMenuBar}">
+            <Grid>
+                <Grid HorizontalAlignment="Left">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.15*"/>
+                        <ColumnDefinition Width="0.015*"/>
+                        <ColumnDefinition Width="0.15*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="/Resources/HP-Pest-control.png" Grid.Row="0" />
+                </Grid>
+                <Grid HorizontalAlignment="Right">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.15*"/>
+                        <ColumnDefinition Width="0.015*" MinWidth="5"/>
+                        <ColumnDefinition Width="0.15*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="btnMinimize" Grid.Column="0" Height="50" Width="50" Style="{StaticResource MinimizeButtonStyle}"/>
+                    <Button x:Name="btnClose" Grid.Column="2" Height="50" Width="50" Style="{StaticResource CloseButtonStyle}" Margin="0,0,5,0"/>
+                </Grid>
+                
+            </Grid>
+        </Border>
+        <LoginView:LoginControl Grid.Row="1" Visibility="Collapsed"/>
+        <LoginView:MainView Grid.Row="1"/>
+    </Grid>
+</Window>
